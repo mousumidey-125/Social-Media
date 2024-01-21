@@ -3,7 +3,7 @@
     margin: auto;
     margin-top: 10vh;
     background-color: lightblue;
-    height: 400px;
+    height: 450px;
 }
 .LoginContainer input{
   width: 80%;
@@ -45,4 +45,19 @@ h3{
 .signupLink span {
   text-decoration: underline;
   color: blue;
+}
+.errorMsg{
+
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  
+}
+.successMsg{
+  text-align: center;
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
+
 }
