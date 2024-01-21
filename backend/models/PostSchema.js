@@ -3,7 +3,9 @@ const PostSchema=schema_mongoose.Schema(
     {
         userName:{type: String},
         userEmail:{type:String},
-        postMessage:{type:String}
+        postMessage:{type:String},
+        postId:{type:String},
+        likes:{ type: Number, default: 0 }
 
     
     },
@@ -11,4 +13,4 @@ const PostSchema=schema_mongoose.Schema(
         timestamps:true
     }
 );
-module.exports=schema_mongoose.model('post',PostSchema);
+module.exports=schema_mongoose.model('posts',PostSchema);

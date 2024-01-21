@@ -85,4 +85,17 @@ router.post('/addPost',(req,res)=>{
     })
     
 })
+router.get('/getAllPosts',(req,res)=>{
+    PostModel.find()
+    .then((result)=>{
+        if(result.length>0){
+            res.send(result)
+        }
+        else{
+            res.send([])
+        }
+    }).catch((err) => {
+        console.log({ message: err.message })
+    })
+})
 module.exports = router;
