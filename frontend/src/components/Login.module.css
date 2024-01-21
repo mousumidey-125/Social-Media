@@ -28,3 +28,21 @@ h3{
     padding-top: 10%;
     padding-bottom: 5%;
 }
+.signupLink {
+  width: 80%;
+  margin: 0% 10%;
+}
+
+.signupLink p {
+  color: black;
+  font-family: cursive;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.signupLink span {
+  text-decoration: underline;
+  color: blue;
+}
