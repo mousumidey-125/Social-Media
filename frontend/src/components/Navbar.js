@@ -8,6 +8,7 @@ function Navbar() {
             <p>Home</p>
             <p>Post</p>
             <p>Profile</p>
+            <p>LogOut</p>
         </div>
 
     </div>
