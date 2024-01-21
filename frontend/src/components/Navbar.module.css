@@ -22,7 +22,7 @@
 }
 .rightNav{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 30%;
     margin-right: 4%;
 }
@@ -30,4 +30,16 @@
     font-size: 20px;
     color: white;
     font-family: cursive;
+    cursor: pointer;
+    
+}
+
+.rightNav .active{
+    border-bottom: 2px solid white;
+}
+.rightNav .link{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    font-family: cursive; 
 }

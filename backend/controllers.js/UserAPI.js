@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt')
 const UserModel = require('../models/UserSchema.js');
+const PostModel =require('../models/PostSchema.js')
 
 router.post('/userreg', (req, res) => {
     bcrypt.hash(req.body.userPassword, 10)
@@ -20,7 +21,7 @@ router.post('/userreg', (req, res) => {
                     else {
                         userObj.save()
                             .then((result) => {
-                                res.send([result])
+                                res.send(result)
                             }).catch((err) => {
                                 console.log({ message: err.message })
                             })
@@ -56,5 +57,32 @@ router.post("/userlogin", (req, res) => {
         }).catch((err) => {
             console.log({ message: err.message })
         })
+})
+
+router.post('/addPost',(req,res)=>{
+    const postObj=new PostModel({
+        userName: req.body.userName,
+        userEmail: req.body.userEmail,
+        postMessage:req.body.postMessage
+    })
+    UserModel.find({ $and: [{ userEmail: req.body.userEmail }, { userName: req.body.userName }] })
+    .then((result)=>{
+        console.log(result)
+        if(result.length>0){
+            postObj.save()
+            .then((result)=>{
+                res.send(result)
+        
+            }).catch((err) => {
+                console.log({ message: err.message })
+            })
+        }
+        else{
+            res.send([])
+        }
+    }).catch((err) => {
+        console.log({ message: err.message })
+    })
+    
 })
 module.exports = router;

@@ -13,11 +13,16 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await axios.post('http://localhost:5000/user/userreg', { userName, userEmail, userPhone, userPassword })
+    
         if (res.data.length === 0) {
             setShowErrormsg(true)
             setShowSucessMsg(false)
         }
         else {
+            setUserName("")
+        setUserEmail("")
+        setUserPhone("")
+        setUserPassword("")
             setShowSucessMsg(true)
             setShowErrormsg(false)
             setTimeout(() => {

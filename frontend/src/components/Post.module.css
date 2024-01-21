@@ -1,0 +1,16 @@
+.postContainer{
+    width: 60%;
+    height: 400px;
+    margin: 5% 20%;
+}
+.postArea{
+    width: 80%;
+    margin: 2% 10%;
+    border-radius: 3px;
+    outline:none;
+    padding: 5px;
+}
+.postContainer button{
+    width: 40%;
+    margin: 0% 30%;
+}
