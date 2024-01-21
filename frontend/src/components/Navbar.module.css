@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navContainer{
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 70px;
+}
+.leftNav{
+    width: 50%;
+    margin-left: 4%;
+}
+.leftNav p{
+    font-family: cursive;
+    font-size: 25px;
+    color: white;
+}
+.rightNav{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    margin-right: 4%;
+}
+.rightNav p{
+    font-size: 20px;
+    color: white;
+    font-family: cursive;
+}
