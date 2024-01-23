@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const UserModel = require('../models/UserSchema.js');
 const PostModel =require('../models/PostSchema.js')
+const { v4: uuidv4 } = require('uuid');
 
 router.post('/userreg', (req, res) => {
     bcrypt.hash(req.body.userPassword, 10)
@@ -63,11 +64,11 @@ router.post('/addPost',(req,res)=>{
     const postObj=new PostModel({
         userName: req.body.userName,
         userEmail: req.body.userEmail,
-        postMessage:req.body.postMessage
+        postMessage:req.body.postMessage,
+        postId:uuidv4()
     })
     UserModel.find({ $and: [{ userEmail: req.body.userEmail }, { userName: req.body.userName }] })
     .then((result)=>{
-        console.log(result)
         if(result.length>0){
             postObj.save()
             .then((result)=>{
@@ -98,4 +99,43 @@ router.get('/getAllPosts',(req,res)=>{
         console.log({ message: err.message })
     })
 })
+
+router.put('/updateLikes/:postId', (req, res) => {
+    const postId = req.params.postId;
+    PostModel.findOne({ postId })
+      .then((post) => {
+        if (!post) {
+          return res.status(404).json({ success: false, message: 'Post not found' });
+        }
+        post.likes += 1;
+        post.save()
+          .then((updatedPost) => {
+            res.send(updatedPost);
+          })
+          .catch((err) => {
+            console.log({ message: err.message });
+            res.status(500).json({ success: false, message: 'Internal Server Error' });
+          });
+      })
+      .catch((err) => {
+        console.log({ message: err.message });
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+      });
+  });
+  
+  router.get('/getPostByEmail/:email',(req,res)=>{
+    PostModel.find({userEmail:req.params.email})
+    .then((result)=>{
+        if(result.length>0){
+            res.send(result)
+        }
+        else{
+            res.send([])
+        }
+
+    }).catch((err) => {
+        console.log({ message: err.message });
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+      });
+  })
 module.exports = router;

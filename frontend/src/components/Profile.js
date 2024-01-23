@@ -1,10 +1,10 @@
 import Navbar from "./Navbar";
 
 function Profile(){
-    
+    const userDetails=JSON.parse(localStorage.getItem('userDetails'))
     return <>
     <Navbar></Navbar>
-    <p>Profile</p>
+    <p>{userDetails.userName}</p>
     </>
 
 }
