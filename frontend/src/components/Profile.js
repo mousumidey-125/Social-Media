@@ -7,6 +7,7 @@ import SinglePost from "./SinglePost";
 
 function Profile(){
     const userDetails=JSON.parse(localStorage.getItem('userDetails'))
+
    const [mypost,setMyPost]=useState([])
     useEffect( ()=>{
         axios.get(`http://localhost:5000/user/getPostByEmail/${userDetails.userEmail}`)

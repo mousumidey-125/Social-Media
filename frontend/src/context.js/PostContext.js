@@ -4,11 +4,18 @@ import { useEffect } from 'react';
 const PostContext = createContext();
 export const PostProvider = ({ children }) => {
     const [allPost,setAllPost]=useState([])
+    const [likedId,setLikedId]=useState(() => {
+        const storedLikedId = localStorage.getItem("likedId");
+        return storedLikedId ? JSON.parse(storedLikedId) : [];
+    });
     useEffect( ()=>{
         axios.get('http://localhost:5000/user/getAllPosts')
         .then((res)=>setAllPost(res.data))
-        
-    },[])
+    },[likedId])
+
+    useEffect(()=>{
+        localStorage.setItem("likedId",JSON.stringify(likedId))
+    },[likedId])
 
     const updateLikes = (postId, newLikes) => {
         setAllPost((prevPosts) => {
@@ -20,8 +27,12 @@ export const PostProvider = ({ children }) => {
           });
         });
       };
+
+      const markAsLiked=(postId)=>{
+        setLikedId((prevPost)=>[...prevPost,postId])
+      }
     
-    return <PostContext.Provider value={{allPost,setAllPost,updateLikes}}>
+    return <PostContext.Provider value={{allPost,setAllPost,updateLikes,markAsLiked,likedId}}>
         {children}
     </PostContext.Provider>
 }
