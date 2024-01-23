@@ -1,9 +1,27 @@
 import { createContext, useContext, useState } from "react";
-
+import axios from "axios";
+import { useEffect } from 'react';
 const PostContext = createContext();
 export const PostProvider = ({ children }) => {
     const [allPost,setAllPost]=useState([])
-    return <PostContext.Provider value={{allPost,setAllPost}}>
+    useEffect( ()=>{
+        axios.get('http://localhost:5000/user/getAllPosts')
+        .then((res)=>setAllPost(res.data))
+        
+    },[])
+
+    const updateLikes = (postId, newLikes) => {
+        setAllPost((prevPosts) => {
+          return prevPosts.map((post) => {
+            if (post.postId === postId) {
+              return { ...post, likes: newLikes };
+            }
+            return post;
+          });
+        });
+      };
+    
+    return <PostContext.Provider value={{allPost,setAllPost,updateLikes}}>
         {children}
     </PostContext.Provider>
 }
