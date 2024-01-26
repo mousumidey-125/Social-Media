@@ -138,4 +138,28 @@ router.put('/updateLikes/:postId', (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
       });
   })
+
+  router.delete('/deleteuserpost/:userEmail/:postId', (req, res) => {
+    const { userEmail, postId } = req.params;
+    
+
+    UserModel.findOne({userEmail:userEmail})
+    .then((result)=>{
+            PostModel.findOneAndDelete({userEmail:userEmail, postId:postId})
+            .then((result)=>{
+                console.log(result)
+                res.send(result)
+            }).catch((err) => {
+                console.log({ message: err.message });
+                res.status(500).send({ message: 'Internal Server Error' });
+            });
+        
+    }).catch((err) => {
+        console.log({ message: err.message });
+        res.status(500).send({ message: 'Internal Server Error' });
+    });
+
+    
+});
+
 module.exports = router;

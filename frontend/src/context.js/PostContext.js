@@ -8,11 +8,7 @@ export const PostProvider = ({ children }) => {
         const storedLikedId = localStorage.getItem("likedId");
         return storedLikedId ? JSON.parse(storedLikedId) : [];
     });
-    useEffect( ()=>{
-        axios.get('http://localhost:5000/user/getAllPosts')
-        .then((res)=>setAllPost(res.data))
-    },[likedId])
-
+    
     useEffect(()=>{
         localStorage.setItem("likedId",JSON.stringify(likedId))
     },[likedId])

@@ -3,4 +3,7 @@
     margin: 2% 10%; 
     padding: 15px;
     border: 1px solid lightgray;
+    display: flex; 
+    justify-content: space-between;
 }
+
