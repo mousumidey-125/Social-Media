@@ -3,7 +3,38 @@
     margin: 2% 10%; 
     padding: 15px;
     border: 1px solid lightgray;
-    display: flex; 
+    
+}
+.postContent{
+    display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
+}
+.userName{
+    width: 80%;
+}
+.actions{
+    width: 15%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px 3px lightgray;
+    border-radius: 5px;
+}
+.actions button{
+    margin: 5px;
+    background-color: white;
+    border:none;
+    border-bottom: gray; 
+}
+.actions button:hover{
+    border-bottom: 3px solid blue;
+    
+}
+
+.option{
+    width: 5%;
 }
 
